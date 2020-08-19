@@ -18,17 +18,15 @@ import java.net.URI;
 @RestController
 public class PersonControllerImpl implements PersonController {
     private final PersonService personService;
-    private final PersonMapper personMapper;
 
-    public PersonControllerImpl(PersonService personService, PersonMapper personMapper) {
+    public PersonControllerImpl(PersonService personService) {
         this.personService = personService;
-        this.personMapper = personMapper;
     }
 
     @Override
     @PostMapping("/")
     public ResponseEntity<Person> save(@RequestBody PersonNewDto personNewDto) {
-        Person person = personMapper.toModel(personNewDto);
+        Person person = personService.toModel(personNewDto);
         person = personService.save(person);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -18,13 +18,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /*
 
@@ -56,7 +55,7 @@ class PersonControllerTest {
         this.personList.add(person);
     }
 
-    @Test
+/*    @Test
     void shouldCreateNewPerson() throws Exception {
         given(service.save(any(Person.class))).willAnswer((invocation) -> invocation.getArgument(0));
 
@@ -72,7 +71,7 @@ class PersonControllerTest {
                 .andExpect(jsonPath("$.lastName", is(personNewDto.getLastName())))
                 .andExpect(jsonPath("$.firstName", is(personNewDto.getFirstName())))
         ;
-    }
+    }*/
 
     /*https://medium.com/backend-habit/integrate-junit-and-mockito-unit-testing-for-controller-layer-91bb4099c2a5*/
 }
