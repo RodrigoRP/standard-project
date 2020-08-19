@@ -35,6 +35,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+
 @SpringBootTest
 class PersonControllerV2Test {
 
@@ -60,7 +61,7 @@ class PersonControllerV2Test {
 
 
     @Test
-    void criar_200() throws Exception {
+    void should_save_person_and_return_201() throws Exception {
         final PersonNewDto dto = new PersonNewDto("Ronaldo", "Nazario",
                 "0000000", "ronaldo@bol.com.br", "Serafim Correa",
                 "20", "9999999", "Rio de Janeiro");
@@ -77,4 +78,6 @@ class PersonControllerV2Test {
 
         verify(mockRepository, times(1)).save(any(Person.class));
     }
+
+
 }

@@ -12,10 +12,10 @@ public interface PersonController {
 
     @ApiOperation("Add new data")
     ResponseEntity<Person> save(@RequestBody PersonNewDto personNewDto);
-/*
-    @ApiOperation("Find by Id")
-    public Person findById(@PathVariable("id") Long id);
 
+    @ApiOperation("Find by Id")
+    ResponseEntity<Person> findById(Long id);
+/*
     @ApiOperation("Delete based on primary key")
     public void delete(@PathVariable("id") Long id);
 

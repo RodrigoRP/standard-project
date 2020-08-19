@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Person {
 
@@ -23,7 +25,4 @@ public class Person {
     @Embedded // is used to embed a type into another entity.
     private Address address;
 
-    public Long getId() {
-        return id;
-    }
 }
