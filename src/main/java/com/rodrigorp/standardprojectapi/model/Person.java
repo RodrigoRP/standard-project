@@ -1,12 +1,9 @@
 package com.rodrigorp.standardprojectapi.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -27,5 +24,7 @@ public class Person {
     @Embedded // is used to embed a type into another entity.
     private Address address;
 
-
+    public Long getId() {
+        return id;
+    }
 }

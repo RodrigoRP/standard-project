@@ -2,7 +2,6 @@ package com.rodrigorp.standardprojectapi.controller.impl;
 
 import com.rodrigorp.standardprojectapi.controller.PersonController;
 import com.rodrigorp.standardprojectapi.dto.PersonNewDto;
-import com.rodrigorp.standardprojectapi.mapper.PersonMapper;
 import com.rodrigorp.standardprojectapi.model.Person;
 import com.rodrigorp.standardprojectapi.service.PersonService;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-@RequestMapping("/api/person")
+@RequestMapping("/api/v1/person")
 @RestController
 public class PersonControllerImpl implements PersonController {
     private final PersonService personService;
