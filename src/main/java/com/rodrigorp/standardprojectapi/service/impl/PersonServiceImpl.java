@@ -39,6 +39,12 @@ public class PersonServiceImpl implements PersonService {
         return repository.findAll();
     }
 
+    @Override
+    public void deleteById(Long id) {
+        findById(id);
+        repository.deleteById(id);
+    }
+
     public Person toModel(PersonNewDto personNewDto) {
         Address address = new Address(personNewDto.getStreet(), personNewDto.getNumber(),
                 personNewDto.getCep(), personNewDto.getCity());

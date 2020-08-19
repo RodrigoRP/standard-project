@@ -49,4 +49,11 @@ public class PersonControllerImpl implements PersonController {
         return ResponseEntity.ok().body(personList);
     }
 
+    @Override
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        personService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

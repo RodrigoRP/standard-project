@@ -18,12 +18,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -86,6 +86,29 @@ class PersonControllerV2Test {
                 .andExpect(jsonPath("$[0].firstName", is("Ronaldo")));
 
         verify(mockRepository, times(1)).findAll();
+    }
+
+    @Test
+    void deletar_200() throws Exception {
+        Person person = new Person(1L, "Ronaldo", "Nazario",
+                "0000000", "ronaldo@bol.com.br", new Address("Serafim Correa",
+                "20", "9999999", "Rio de Janeiro"));
+
+        when(mockRepository.findById(1L)).thenReturn(Optional.of(person));
+
+        mockMvc.perform(delete(BASE_URL + "/1"))
+                .andExpect(status().isNoContent());
+
+        verify(mockRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    void deletar_exception_200() throws Exception {
+
+        mockMvc.perform(delete(BASE_URL + "/1"))
+                .andExpect(status().isNotFound());
+
+        verify(mockRepository, never()).deleteById(1L);
     }
 
 

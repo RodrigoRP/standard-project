@@ -20,6 +20,9 @@ public interface PersonController {
 
     @ApiOperation("Find all data")
     ResponseEntity<List<Person>> findAll();
+
+    @ApiOperation("Delete based on primary key")
+    ResponseEntity<Void> delete(Long id);
 /*
     @ApiOperation("Delete based on primary key")
     public void delete(@PathVariable("id") Long id);

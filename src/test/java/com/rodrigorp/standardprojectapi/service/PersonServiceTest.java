@@ -95,4 +95,28 @@ class PersonServiceTest {
         // Assert the response
         Assertions.assertEquals(personList, returnedPersonList);
     }
+
+    @Test
+    @DisplayName("Test deleteById person")
+    void deleteByIdTest() {
+        // Setup our mock repository
+        Person person = new Person(1L, "Ronaldo", "Nazario",
+                "0000000", "ronaldo@bol.com.br", new Address("Serafim Correa",
+                "20", "9999999", "Rio de Janeiro"));
+
+        doReturn(Optional.of(person)).when(repository).findById(person.getId());
+
+        service.deleteById(person.getId());
+        service.deleteById(person.getId());
+
+        verify(repository, times(2)).deleteById(person.getId());
+    }
+
+    @Test
+    void shouldThrowErrorWhenBeDeleted() {
+
+        assertThrows(ObjectNotFoundException.class, () -> service.deleteById(2L));
+
+        verify(repository, never()).deleteById(2L);
+    }
 }

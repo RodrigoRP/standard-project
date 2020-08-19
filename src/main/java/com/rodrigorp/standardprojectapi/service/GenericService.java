@@ -10,9 +10,11 @@ public interface GenericService<E, M> {
 
     List<E> findAll();
 
+    void deleteById(M id);
+
  /*   List<E> save(List<E> entities);
 
-    void deleteById(M id);
+
 
 
 
