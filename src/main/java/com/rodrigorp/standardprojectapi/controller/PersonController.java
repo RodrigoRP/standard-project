@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Api(tags = "Person API")
 public interface PersonController {
 
@@ -15,12 +17,14 @@ public interface PersonController {
 
     @ApiOperation("Find by Id")
     ResponseEntity<Person> findById(Long id);
+
+    @ApiOperation("Find all data")
+    ResponseEntity<List<Person>> findAll();
 /*
     @ApiOperation("Delete based on primary key")
     public void delete(@PathVariable("id") Long id);
 
-    @ApiOperation("Find all data")
-    public List<Person> list();
+
 
     @ApiOperation("Pagination request")
     public Page<Person> pageQuery(Pageable pageable);

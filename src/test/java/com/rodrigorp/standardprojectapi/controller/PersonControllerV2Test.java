@@ -1,38 +1,29 @@
 package com.rodrigorp.standardprojectapi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rodrigorp.standardprojectapi.controller.impl.PersonControllerImpl;
 import com.rodrigorp.standardprojectapi.dao.PersonRepository;
 import com.rodrigorp.standardprojectapi.dto.PersonNewDto;
 import com.rodrigorp.standardprojectapi.model.Address;
 import com.rodrigorp.standardprojectapi.model.Person;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -77,6 +68,24 @@ class PersonControllerV2Test {
                 .andExpect(status().isCreated());
 
         verify(mockRepository, times(1)).save(any(Person.class));
+    }
+
+    @Test
+    void should_findAll_person_and_return_200() throws Exception {
+        final Person person = new Person(1L, "Ronaldo", "Nazario",
+                "0000000", "ronaldo@bol.com.br", new Address("Serafim Correa",
+                "20", "9999999", "Rio de Janeiro"));
+        List<Person> personList = Arrays.asList(person);
+
+        when(mockRepository.findAll()).thenReturn(personList);
+
+        mockMvc.perform(get(BASE_URL + "/"))
+                .andExpect(content().contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].firstName", is("Ronaldo")));
+
+        verify(mockRepository, times(1)).findAll();
     }
 
 

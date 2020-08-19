@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RequestMapping("/api/v1/person")
 @RestController
@@ -38,6 +39,14 @@ public class PersonControllerImpl implements PersonController {
         Person person = personService.findById(id);
 
         return ResponseEntity.ok().body(person);
+    }
+
+    @Override
+    @GetMapping("/")
+    public ResponseEntity<List<Person>> findAll() {
+        List<Person> personList = personService.findAll();
+
+        return ResponseEntity.ok().body(personList);
     }
 
 }

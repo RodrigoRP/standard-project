@@ -1,6 +1,8 @@
 package com.rodrigorp.standardprojectapi.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 

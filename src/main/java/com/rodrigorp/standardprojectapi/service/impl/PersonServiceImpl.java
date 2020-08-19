@@ -9,6 +9,7 @@ import com.rodrigorp.standardprojectapi.service.exception.ObjectNotFoundExceptio
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,6 +32,11 @@ public class PersonServiceImpl implements PersonService {
         Optional<Person> person = repository.findById(id);
         return person.orElseThrow(() -> new ObjectNotFoundException("" +
                 "Person not found! Id: " + id));
+    }
+
+    @Override
+    public List<Person> findAll() {
+        return repository.findAll();
     }
 
     public Person toModel(PersonNewDto personNewDto) {

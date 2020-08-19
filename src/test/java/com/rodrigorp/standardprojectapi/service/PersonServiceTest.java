@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -74,5 +76,23 @@ class PersonServiceTest {
         assertThrows(ObjectNotFoundException.class, () -> service.findById(2L));
 
         verify(repository, times(1)).findById(2L);
+    }
+
+    @Test
+    @DisplayName("Test findAll person")
+    void findAllTest() {
+        // Setup our mock repository
+        Person person = new Person(1L, "Ronaldo", "Nazario",
+                "0000000", "ronaldo@bol.com.br", new Address("Serafim Correa",
+                "20", "9999999", "Rio de Janeiro"));
+        List<Person> personList = Arrays.asList(person);
+
+        doReturn(personList).when(repository).findAll();
+
+        // Execute the service call
+        List<Person> returnedPersonList = service.findAll();
+
+        // Assert the response
+        Assertions.assertEquals(personList, returnedPersonList);
     }
 }
