@@ -111,5 +111,12 @@ class PersonControllerV2Test {
         verify(mockRepository, never()).deleteById(1L);
     }
 
+ /*   @Test
+    void should_update_person_by_id() throws Exception {
+
+        mockMvc.perform(patch(BASE_URL + "/1"))
+
+    }
+*/
 
 }

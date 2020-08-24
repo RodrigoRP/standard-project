@@ -1,5 +1,6 @@
 package com.rodrigorp.standardprojectapi.service;
 
+import com.rodrigorp.standardprojectapi.dto.PersonUpdateDto;
 import com.rodrigorp.standardprojectapi.repository.PersonRepository;
 import com.rodrigorp.standardprojectapi.model.Address;
 import com.rodrigorp.standardprojectapi.model.Person;
@@ -8,6 +9,7 @@ import com.rodrigorp.standardprojectapi.service.impl.PersonServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -118,5 +120,24 @@ class PersonServiceTest {
         assertThrows(ObjectNotFoundException.class, () -> service.deleteById(2L));
 
         verify(repository, never()).deleteById(2L);
+    }
+
+    @Test
+    @DisplayName("Test update person")
+    void updateByIdTest() {
+        // Setup our mock repository
+        Person person = new Person(1L, "Ronaldo", "Nazario",
+                "0000000", "ronaldo@bol.com.br", new Address("Serafim Correa",
+                "20", "9999999", "Rio de Janeiro"));
+        doReturn(Optional.of(person)).when(repository).findById(person.getId());
+
+        PersonUpdateDto personUpdateDto = new PersonUpdateDto();
+        personUpdateDto.setStreet(JsonNullable.of("Presidente Vargas"));
+
+        // Execute the service call
+        service.update(personUpdateDto, person.getId());
+
+        // Assert the response
+        Assertions.assertEquals("Presidente Vargas", person.getAddress().getStreet());
     }
 }
