@@ -1,5 +1,6 @@
 package com.rodrigorp.standardprojectapi.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Setter
 public class PersonNewDto {
 
+    @ApiModelProperty(example = "MariaXX", required = true)
     private String firstName;
 
     private String lastName;
@@ -20,11 +22,11 @@ public class PersonNewDto {
 
     private String email;
 
-    private String street;
+    private String addressStreet;
 
-    private String number;
+    private String addressNumber;
 
-    private String cep;
+    private String addressCep;
 
-    private String city;
+    private String addressCity;
 }

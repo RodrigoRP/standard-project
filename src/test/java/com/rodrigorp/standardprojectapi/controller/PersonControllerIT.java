@@ -7,9 +7,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.TestPropertySource;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 
+//@TestPropertySource("/application-test.properties")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PersonControllerIT {
 
@@ -18,12 +22,13 @@ class PersonControllerIT {
 
     @BeforeEach
     void setUp() {
+       /// RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         RestAssured.port = port;
         RestAssured.basePath = "/api/v1/person";
     }
 
     @Test
-    void should_return_201_when_save_person() {
+    void shouldReturnStatus201_whenSavePerson() {
         String newPerson = "{\n" +
                 "  \"cep\": \"97015000\",\n" +
                 "  \"city\": \"São Paulo\",\n" +
@@ -43,6 +48,20 @@ class PersonControllerIT {
                 .post("/")
                 .then()
                 .statusCode(HttpStatus.CREATED.value());
+
+    }
+
+    @Test
+    void shouldReturnStatus200_WhenGetPerson() {
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .when()
+                .get("/")
+                .then()
+               // .body("", hasSize(2))
+                .body("firstName", hasItems("Ronaldo", "Adamastor"))
+                .statusCode(HttpStatus.OK.value());
 
     }
 }

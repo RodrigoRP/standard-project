@@ -1,6 +1,7 @@
 package com.rodrigorp.standardprojectapi.controller;
 
 import com.rodrigorp.standardprojectapi.dto.PersonNewDto;
+import com.rodrigorp.standardprojectapi.dto.PersonUpdateDto;
 import com.rodrigorp.standardprojectapi.model.Person;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,15 +24,7 @@ public interface PersonController {
 
     @ApiOperation("Delete based on primary key")
     ResponseEntity<Void> delete(Long id);
-/*
-    @ApiOperation("Delete based on primary key")
-    public void delete(@PathVariable("id") Long id);
-
-
-
-    @ApiOperation("Pagination request")
-    public Page<Person> pageQuery(Pageable pageable);
 
     @ApiOperation("Update one data")
-    public Person update(@RequestBody Person dto, @PathVariable("id") Long id);*/
+    ResponseEntity<Person> update(PersonUpdateDto personUpdateDto, Long id);
 }

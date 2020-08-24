@@ -12,6 +12,8 @@ public interface GenericService<E, M> {
 
     void deleteById(M id);
 
+    //E update(E entity, M id)
+
  /*   List<E> save(List<E> entities);
 
 
@@ -22,5 +24,5 @@ public interface GenericService<E, M> {
 
     Page<E> findAll(Pageable pageable);
 
-    E update(E entity, I id);*/
+    ;*/
 }

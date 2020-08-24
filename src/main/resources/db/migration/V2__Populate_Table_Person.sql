@@ -1,0 +1,1 @@
+INSERT INTO `person` VALUES (1,'9999999','Porto Alegre','15','Presidente Vargas','ronaldo@bol.com.br','Ronaldo','Nazario','999999999'),(2,'9999999','São Paulo','22','Avenida Medianeira','adamastor@bol.com.br','Adamastor','Pitaco','999999999');

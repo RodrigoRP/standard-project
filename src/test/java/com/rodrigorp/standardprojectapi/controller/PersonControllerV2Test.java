@@ -1,7 +1,7 @@
 package com.rodrigorp.standardprojectapi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rodrigorp.standardprojectapi.dao.PersonRepository;
+import com.rodrigorp.standardprojectapi.repository.PersonRepository;
 import com.rodrigorp.standardprojectapi.dto.PersonNewDto;
 import com.rodrigorp.standardprojectapi.model.Address;
 import com.rodrigorp.standardprojectapi.model.Person;

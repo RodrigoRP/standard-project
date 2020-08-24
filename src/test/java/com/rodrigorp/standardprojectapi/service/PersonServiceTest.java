@@ -1,6 +1,6 @@
 package com.rodrigorp.standardprojectapi.service;
 
-import com.rodrigorp.standardprojectapi.dao.PersonRepository;
+import com.rodrigorp.standardprojectapi.repository.PersonRepository;
 import com.rodrigorp.standardprojectapi.model.Address;
 import com.rodrigorp.standardprojectapi.model.Person;
 import com.rodrigorp.standardprojectapi.service.exception.ObjectNotFoundException;
