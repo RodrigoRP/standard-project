@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class PersonNewDto {
 
-    @ApiModelProperty(example = "MariaXX", required = true)
+  //  @ApiModelProperty(example = "MariaXX", required = true)
     private String firstName;
 
     private String lastName;

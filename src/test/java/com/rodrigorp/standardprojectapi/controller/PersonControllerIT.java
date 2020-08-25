@@ -60,7 +60,7 @@ class PersonControllerIT {
                 .get("/")
                 .then()
                // .body("", hasSize(2))
-                .body("firstName", hasItems("Ronaldo", "Adamastor"))
+                .body("firstName", hasItems("Adamastor"))
                 .statusCode(HttpStatus.OK.value());
 
     }
