@@ -1,9 +1,9 @@
 package com.rodrigorp.standardprojectapi.service;
 
 import com.rodrigorp.standardprojectapi.dto.PersonUpdateDto;
-import com.rodrigorp.standardprojectapi.repository.PersonRepository;
 import com.rodrigorp.standardprojectapi.model.Address;
 import com.rodrigorp.standardprojectapi.model.Person;
+import com.rodrigorp.standardprojectapi.repository.PersonRepository;
 import com.rodrigorp.standardprojectapi.service.exception.ObjectNotFoundException;
 import com.rodrigorp.standardprojectapi.service.impl.PersonServiceImpl;
 import org.junit.jupiter.api.Assertions;

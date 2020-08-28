@@ -6,7 +6,6 @@ import com.rodrigorp.standardprojectapi.model.Person;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 public interface PersonController {
 
     @ApiOperation("Add new data")
-    ResponseEntity<Person> save(@RequestBody PersonNewDto personNewDto);
+    ResponseEntity<Person> save(PersonNewDto personNewDto);
 
     @ApiOperation("Find by Id")
     ResponseEntity<Person> findById(Long id);
