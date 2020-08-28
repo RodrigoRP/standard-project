@@ -49,8 +49,8 @@ public class PersonServiceImpl implements PersonService {
     public Person update(PersonUpdateDto personUpdateDto, Long id) {
         Person returnedPerson = findById(id);
 
-        JsonNullableUtils.changeIfPresent(personUpdateDto.getCep(), returnedPerson.getAddress()::setCep);
-        JsonNullableUtils.changeIfPresent(personUpdateDto.getCity(), returnedPerson.getAddress()::setCity);
+        JsonNullableUtils.changeIfPresent(personUpdateDto.getCep(), cep -> returnedPerson.getAddress().setCep(cep));
+        JsonNullableUtils.changeIfPresent(personUpdateDto.getCity(), city -> returnedPerson.getAddress().setCity(city));
         JsonNullableUtils.changeIfPresent(personUpdateDto.getNumber(), returnedPerson.getAddress()::setNumber);
         JsonNullableUtils.changeIfPresent(personUpdateDto.getStreet(), returnedPerson.getAddress()::setStreet);
 
